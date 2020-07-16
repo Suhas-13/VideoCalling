@@ -1,6 +1,6 @@
 import express, { Application } from "express";
 import socketIO, { Server as SocketIOServer } from "socket.io";
-import { createServer, Server as HTTPServer } from "https";
+import { createServer, Server as HTTPServer } from "http";
 import path from "path";
 
 export class Server {
@@ -10,7 +10,7 @@ export class Server {
 
   private activeSockets: string[] = [];
 
-  private readonly DEFAULT_PORT = 5000;
+  private readonly DEFAULT_PORT = 80;
 
   constructor() {
     this.initialize();
@@ -23,7 +23,7 @@ export class Server {
       key: fs.readFileSync('key.pem'),
       cert: fs.readFileSync('cert.pem')
     };
-    this.httpServer = createServer(options,this.app);
+    this.httpServer = createServer(this.app);
     this.io = socketIO(this.httpServer);
 
     this.configureApp();

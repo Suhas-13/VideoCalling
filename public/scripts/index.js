@@ -107,7 +107,7 @@ function hangup() {
   end_call();
 }
 
-const socket = io.connect("https://192.168.86.36:5000",{query:"username=" + main_username});
+const socket = io.connect("https://video.suhas.net",{query:"username=" + main_username});
 
 socket.on("update-user-list", ({ users }) => {
   console.log("receiving user-list");
