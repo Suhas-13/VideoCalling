@@ -19,10 +19,12 @@ export class Server {
   private initialize(): void {
     this.app = express();
     const fs = require('fs');
+    /*
     const options = {
       key: fs.readFileSync('key.pem'),
       cert: fs.readFileSync('cert.pem')
     };
+    */
     this.httpServer = createServer(this.app);
     this.io = socketIO(this.httpServer);
 
